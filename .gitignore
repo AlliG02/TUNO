@@ -6,3 +6,6 @@ build
 
 # Ignore DS_Store
 .DS_Store
+
+# Ignore intellij stuff
+.idea/*
