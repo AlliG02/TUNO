@@ -1,28 +1,27 @@
 package com.uno.core.models;
+
 import java.util.Random;
 
 class Card {
-    private static final String[] COLOURS = {"Red", "Blue", "Green", "Yellow"};
+    private static final Colour[] COLOURS = Colour.values();
     private char[][] grid;
     private Random random;
     public int number;
-    public String colour;
+    public Colour colour;
 
-
-    // default constructor for standard cards
-    public Card(){
+    // Default constructor for random cards
+    public Card() {
         random = new Random();
         this.number = random.nextInt(9) + 1;
         this.colour = COLOURS[random.nextInt(COLOURS.length)];
         createGrid();
     }
 
-    // constructor for specific numbers and colours
-    public Card(int number, String colour){
-        // Validate colour
+    // Constructor for specific numbers and colours
+    public Card(int number, Colour colour) {
         boolean validColour = false;
-        for (String c : COLOURS) {
-            if (c.equalsIgnoreCase(colour)) {
+        for (Colour c : COLOURS) {
+            if (c == colour) {
                 validColour = true;
                 break;
             }
@@ -31,7 +30,6 @@ class Card {
             throw new IllegalArgumentException("Invalid colour specified");
         }
 
-        // Validate number
         if (number < 1 || number > 9) {
             throw new IllegalArgumentException("Number must be between 1 and 9");
         }
@@ -41,11 +39,11 @@ class Card {
         createGrid();
     }
 
-    public void createGrid(){
+    public void createGrid() {
         this.grid = new char[3][3];
 
         char charNum = (char) ('0' + this.number);
-        char charCol = this.colour.charAt(0);
+        char charCol = this.colour.toString().charAt(0);
 
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
@@ -55,21 +53,20 @@ class Card {
         grid[1][1] = charNum;
     }
 
-    public char[][] getGrid(){
+    public char[][] getGrid() {
         return this.grid;
     }
 
     public void showCard() {
-    for (int i = 0; i < grid.length; i++) {
-        for (int j = 0; j < grid[i].length; j++) {
-            System.out.print(grid[i][j] + " ");
-        }
-            System.out.println(); 
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                System.out.print(grid[i][j] + " ");
+            }
+            System.out.println();
         }
     }
 
     public boolean canBePlayedOn(Card topCard) {
         return this.colour.equals(topCard.colour) || this.number == topCard.number;
     }
-
 }

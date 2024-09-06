@@ -18,6 +18,7 @@ public class ComputerPlayer extends Player {
 
         if (random.nextBoolean()) {
             // Example: 50% chance to play a card
+            // TODO increase the chances
             playCard();
         }
         else {
