@@ -36,14 +36,13 @@ public class Game {
             System.out.println();
 
             for (Player player : players) {
-                player.takeTurn();
                 if (player.hand.getHandSize() == 0){
                     winner = player.name;
                     gameOngoing = false;
                 }
+                player.takeTurn();
             }
         }
-
         endScreen();
     }
 

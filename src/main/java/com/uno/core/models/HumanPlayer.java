@@ -22,32 +22,39 @@ public class HumanPlayer extends Player{
         System.out.println();
 
         boolean hasPlayableCards = hand.hasPlayableCard(deck.getTopCard());
+        boolean validChoice = false;
 
-        if (hasPlayableCards){
-            System.out.println("1. Play a card");
-            System.out.println("2. Pick up a card");
+        while(!validChoice){
+            if (hasPlayableCards){
+                System.out.println("1. Play a card");
+                System.out.println("2. Pick up a card");
 
 
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline
+                int choice = scanner.nextInt();
+                scanner.nextLine(); // Consume the newline
 
-            switch (choice) {
-                case 1:
-                    System.out.println();
-                    playCard();
-                    break;
-                case 2:
-                    pickupCard();
-                    break;
-                default:
-                    System.out.println("Invalid choice.");
-                    break;
+                switch (choice) {
+                    case 1:
+                        System.out.println();
+                        playCard();
+                        validChoice = true;
+                        break;
+                    case 2:
+                        pickupCard();
+                        validChoice = true;
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please choose either 1 or 2.");
+                        break;
+                }
+            }
+            else{
+                System.out.println("You have no cards that match. You must pickup a card.");
+                pickupCard();
+                validChoice = true;
             }
         }
-        else{
-            System.out.println("You have no cards that match. You must pickup a card.");
-            pickupCard();
-        }
+
 
     }
 }

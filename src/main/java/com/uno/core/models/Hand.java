@@ -60,7 +60,7 @@ public class Hand {
                 for (int col = 0; col < cardWidth; col++) {
                     System.out.print(card.colour.getAnsiCode() + grid[row][col] + " " + reset);
                 }
-                System.out.print("   ");  // Add some space between cards
+                System.out.print(cards.indexOf(card) + "   ");  // Add some space between cards
             }
             System.out.println();  // Move to the next line after each row of cards is printed
         }
