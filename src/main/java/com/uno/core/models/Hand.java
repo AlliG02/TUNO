@@ -49,6 +49,7 @@ public class Hand {
 
         int cardHeight = 3;  // Number of rows in a card grid
         int cardWidth = 3;   // Number of columns in a card grid
+        String reset = "\u001B[0m";
 
         // Print the card grids row by row
         for (int row = 0; row < cardHeight; row++) {
@@ -57,7 +58,7 @@ public class Hand {
                 // Print each row of the current card
                 char[][] grid = card.getGrid();
                 for (int col = 0; col < cardWidth; col++) {
-                    System.out.print(grid[row][col] + " ");
+                    System.out.print(card.colour.getAnsiCode() + grid[row][col] + " " + reset);
                 }
                 System.out.print("   ");  // Add some space between cards
             }

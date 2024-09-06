@@ -58,9 +58,11 @@ class Card {
     }
 
     public void showCard() {
+        String reset = "\u001B[0m";
+
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
-                System.out.print(grid[i][j] + " ");
+                System.out.print(colour.getAnsiCode() + grid[i][j] + " " + reset);
             }
             System.out.println();
         }
