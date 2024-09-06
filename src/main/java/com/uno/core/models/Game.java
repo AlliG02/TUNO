@@ -10,6 +10,7 @@ public class Game {
     private Player player2;
     private Scanner scanner;
     private EndlessDeck sharedDeck;
+    private String winner;
 
     public Game() {
 
@@ -20,7 +21,6 @@ public class Game {
         players.add(player1);
         players.add(player2);
         scanner = new Scanner(System.in);
-
         // Title screen
         titleScreen();
     }
@@ -36,16 +36,32 @@ public class Game {
             System.out.println();
 
             for (Player player : players) {
-                // player function to check they can take turn
                 player.takeTurn();
-                // Check game status and update accordingly
-                // e.g., check if any player has won
+                if (player.hand.getHandSize() == 0){
+                    winner = player.name;
+                    gameOngoing = false;
+                }
             }
         }
+
+        endScreen();
     }
 
     private void rules(){
         System.out.println("Java has no built in lorem ipsum function :'(");
+    }
+
+    private void endScreen(){
+        System.out.println(winner + " won the game!");
+        System.out.println("PLay again ? (1) Quit? (2)");
+        int againOrQuit = scanner.nextInt();
+
+        switch(againOrQuit){
+            case(1):
+                titleScreen();
+            case(2):
+                System.exit(0);
+        }
     }
 
     private void titleScreen(){
