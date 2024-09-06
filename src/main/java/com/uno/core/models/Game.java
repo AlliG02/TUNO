@@ -36,6 +36,7 @@ public class Game {
             System.out.println();
 
             for (Player player : players) {
+                // player function to check they can take turn
                 player.takeTurn();
                 // Check game status and update accordingly
                 // e.g., check if any player has won

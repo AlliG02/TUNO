@@ -20,25 +20,34 @@ public class HumanPlayer extends Player{
         System.out.println(name + ", it's your turn!\n");
         hand.showHand();
         System.out.println();
-        System.out.println("1. Play a card");
-        System.out.println("2. Pick up a card");
 
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline
+        boolean hasPlayableCards = hand.hasPlayableCard(deck.getTopCard());
 
-        switch (choice) {
-            case 1:
-                // Logic to play a card
-                // pick card
-                // card needs to be playable
-                //
-                break;
-            case 2:
-                pickupCard();
-                break;
-            default:
-                System.out.println("Invalid choice.");
-                break;
+        if (hasPlayableCards){
+            System.out.println("1. Play a card");
+            System.out.println("2. Pick up a card");
+
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline
+
+            switch (choice) {
+                case 1:
+                    System.out.println();
+                    playCard();
+                    break;
+                case 2:
+                    pickupCard();
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+                    break;
+            }
         }
+        else{
+            System.out.println("You have no cards that match. You must pickup a card.");
+            pickupCard();
+        }
+
     }
 }

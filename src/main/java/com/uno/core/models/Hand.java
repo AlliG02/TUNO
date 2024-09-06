@@ -65,4 +65,14 @@ public class Hand {
         }
         // TODO add numbers
     }
+
+    public boolean hasPlayableCard(Card topCard) {
+        for (Card card : cards) {
+            if (card.canBePlayedOn(topCard)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

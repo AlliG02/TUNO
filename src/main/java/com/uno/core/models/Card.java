@@ -68,4 +68,8 @@ class Card {
         }
     }
 
+    public boolean canBePlayedOn(Card topCard) {
+        return this.colour.equals(topCard.colour) || this.number == topCard.number;
+    }
+
 }
