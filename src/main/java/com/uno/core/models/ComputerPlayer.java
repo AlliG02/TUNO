@@ -6,7 +6,7 @@ public class ComputerPlayer extends Player {
 
     private Random random;
 
-    public ComputerPlayer(EndlessDeck sharedDeck){
+    public ComputerPlayer(Deck sharedDeck){
         super("Computer", sharedDeck);
         hand.fillHand();
         random = new Random();

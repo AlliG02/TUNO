@@ -30,8 +30,8 @@ class Card {
             throw new IllegalArgumentException("Invalid colour specified");
         }
 
-        if (number < 1 || number > 9) {
-            throw new IllegalArgumentException("Number must be between 1 and 9");
+        if (number < 0 || number > 9) {
+            throw new IllegalArgumentException("Number must be between 0 and 9");
         }
 
         this.colour = colour;

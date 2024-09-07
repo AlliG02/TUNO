@@ -2,13 +2,13 @@ package com.uno.core.models;
 import java.util.Scanner;
 
 public abstract class Player {
-    protected EndlessDeck deck;
+    protected Deck deck;
     protected String name; // You can use this for identifying the player
     private Scanner scanner;
     public Hand hand;
 
 
-    public Player(String name, EndlessDeck sharedDeck) {
+    public Player(String name, Deck sharedDeck) {
         this.name = name;
         this.deck = sharedDeck;
         this.scanner = new Scanner(System.in);

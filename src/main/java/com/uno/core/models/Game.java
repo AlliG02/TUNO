@@ -9,17 +9,17 @@ public class Game {
     private Player player1;
     private Player player2;
     private Scanner scanner;
-    private EndlessDeck sharedDeck;
+    private Deck sharedDeck;
     private String winner;
 
-    public Game() {
+    public Game(List<Player> players) {
 
-        sharedDeck = new EndlessDeck();
+        sharedDeck = new Deck();
         player1 = new HumanPlayer("Human", sharedDeck);
         player2 = new ComputerPlayer(sharedDeck);
-        players = new ArrayList<>();
-        players.add(player1);
-        players.add(player2);
+        this.players = players;
+        this.players.add(player1);
+        this.players.add(player2);
         scanner = new Scanner(System.in);
         // Title screen
         titleScreen();
@@ -33,6 +33,8 @@ public class Game {
             // screen stuff
             System.out.println(player2.name + " has " + player2.hand.getHandSize() + " cards remaining. The top card is: \n");
             sharedDeck.getTopCard().showCard();
+            System.out.println("Trash pile is:");
+            sharedDeck.trash.showTrash();
             System.out.println();
 
             for (Player player : players) {

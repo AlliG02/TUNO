@@ -7,7 +7,7 @@ public class HumanPlayer extends Player{
     private Scanner scanner;
     private Card newCard;
 
-    public HumanPlayer(String name, EndlessDeck sharedDeck){
+    public HumanPlayer(String name, Deck sharedDeck){
         super(name, sharedDeck);
         hand.fillHand();
         scanner = new Scanner(System.in);
