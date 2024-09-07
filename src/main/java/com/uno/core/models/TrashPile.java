@@ -2,6 +2,7 @@ package com.uno.core.models;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class TrashPile {
 
@@ -25,6 +26,18 @@ public class TrashPile {
         else{
             System.out.println("Trash pile is empty");
         }
+    }
+
+    public void shuffleTrash(){
+        Collections.shuffle(trash);
+    }
+
+    public ArrayList<Card> getTrash(){
+        return trash;
+    }
+
+    public boolean trashIsEmpty(){
+        return trash.isEmpty();
     }
 
 }

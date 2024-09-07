@@ -14,7 +14,7 @@ public class Game {
 
     public Game(List<Player> players) {
 
-        sharedDeck = new Deck();
+        sharedDeck = new Deck(1);
         player1 = new HumanPlayer("Human", sharedDeck);
         player2 = new ComputerPlayer(sharedDeck);
         this.players = players;
@@ -33,17 +33,32 @@ public class Game {
             // screen stuff
             System.out.println(player2.name + " has " + player2.hand.getHandSize() + " cards remaining. The top card is: \n");
             sharedDeck.getTopCard().showCard();
+            System.out.println("Deck is:");
+            sharedDeck.showDeck();
             System.out.println("Trash pile is:");
             sharedDeck.trash.showTrash();
             System.out.println();
 
             for (Player player : players) {
+                // exit the game loop if there is a winner
                 if (player.hand.getHandSize() == 0){
                     winner = player.name;
                     gameOngoing = false;
+                    break;
                 }
-                player.takeTurn();
+                else{
+                    player.takeTurn();
+                    if (sharedDeck.deckIsEmpty()){
+                        if (!sharedDeck.trash.trashIsEmpty())
+                            // refill the deck with the trash pile
+                            sharedDeck.refillFromTrash(sharedDeck.trash.getTrash());
+                        else{
+                            sharedDeck.refillFromNewDeck();
+                        }
+                    }
+                }
             }
+
         }
         endScreen();
     }
