@@ -39,6 +39,14 @@ class Card {
         createGrid();
     }
 
+    // Constructor for special cards with no number
+    public Card(Colour colour){
+        this.colour = colour;
+    }
+
+    // method for the function of each special card
+    public void play(){}
+
     public void createGrid() {
         this.grid = new char[3][3];
 
@@ -52,6 +60,21 @@ class Card {
         }
         grid[1][1] = charNum;
     }
+
+    // adapted grid creation for special cards
+    public void createGridSpecialCards(char symbol) {
+        this.grid = new char[3][3];
+
+        char charCol = this.colour.toString().charAt(0);
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                grid[i][j] = charCol;
+            }
+        }
+        grid[1][1] = symbol;
+    }
+
 
     public char[][] getGrid() {
         return this.grid;

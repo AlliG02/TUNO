@@ -1,6 +1,7 @@
 package com.uno.core.models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,10 +12,12 @@ public class Game {
     private Scanner scanner;
     private Deck sharedDeck;
     private String winner;
+    private Boolean skipNextTurn = false;
+    private Boolean reverseOrder = false;
 
     public Game(List<Player> players) {
 
-        sharedDeck = new Deck(1);
+        sharedDeck = new Deck();
         player1 = new HumanPlayer("Human", sharedDeck);
         player2 = new ComputerPlayer(sharedDeck);
         this.players = players;
@@ -29,6 +32,7 @@ public class Game {
 
         // Game loop
         boolean gameOngoing = true;
+
         while (gameOngoing) {
             // screen stuff
             System.out.println(player2.name + " has " + player2.hand.getHandSize() + " cards remaining. The top card is: \n");
@@ -39,7 +43,12 @@ public class Game {
             sharedDeck.trash.showTrash();
             System.out.println();
 
-            for (Player player : players) {
+            // ternary operator. Reverses the player list depending on the reverse flag.
+            List<Player> currentPlayers = reverseOrder ? reverse(players) : players;
+
+            for (int i = 0; i < currentPlayers.size(); i++) {
+                Player player = currentPlayers.get(i);
+
                 // exit the game loop if there is a winner
                 if (player.hand.getHandSize() == 0){
                     winner = player.name;
@@ -61,6 +70,17 @@ public class Game {
 
         }
         endScreen();
+    }
+
+//    // set reverseOrder to the negation of its current value
+//    public void toggleReverseFlag(){
+//        this.reverseOrder = !this.reverseOrder;
+//    }
+
+    private List<Player> reverse(List<Player> list){
+        List<Player> reversedList = new ArrayList<>(list);
+        Collections.reverse(reversedList);
+        return reversedList;
     }
 
     private void rules(){

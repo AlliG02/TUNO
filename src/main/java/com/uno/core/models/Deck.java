@@ -18,20 +18,31 @@ public class Deck {
 
         // add blue cards
         for (int i = 0; i < 10; i++){
-            deck.add(new Card(i, Colour.BLUE));
+            deck.add(new Card(i, Colour.BLUE)); // normal
         }
+        deck.add(new ReverseCard(Colour.BLUE)); // reverse
+        deck.add(new SkipCard(Colour.BLUE)); // skip
+
         // add red cards
         for (int i = 0; i < 10; i++){
-            deck.add(new Card(i, Colour.RED));
+            deck.add(new Card(i, Colour.RED)); // normal
         }
+        deck.add(new ReverseCard(Colour.RED)); // reverse
+        deck.add(new SkipCard(Colour.RED)); // skip
+
         // add yellow cards
         for (int i = 0; i < 10; i++){
-            deck.add(new Card(i, Colour.YELLOW));
+            deck.add(new Card(i, Colour.YELLOW)); // normal
         }
+        deck.add(new ReverseCard(Colour.YELLOW)); // reverse
+        deck.add(new SkipCard(Colour.YELLOW)); // skip
+
         // add green cards
         for (int i = 0; i < 10; i++){
-            deck.add(new Card(i, Colour.GREEN));
+            deck.add(new Card(i, Colour.GREEN)); // normal
         }
+        deck.add(new ReverseCard(Colour.GREEN)); // reverse
+        deck.add(new SkipCard(Colour.GREEN)); // skip
 
         // shuffle the deck
         Collections.shuffle(deck);
@@ -78,7 +89,7 @@ public class Deck {
         Iterator<Card> iterator = deck.iterator();
         while (iterator.hasNext()) {
             Card card = iterator.next();
-            if (card instanceof Card) { // This check needed for when special cards added
+            if ((!(card instanceof ReverseCard)) && (!(card instanceof SkipCard))) { // This check needed for when special cards added
                 topCard = card;
                 iterator.remove();  // Safely removes the current element from the deck
                 break;  // Exit the loop after finding the top card

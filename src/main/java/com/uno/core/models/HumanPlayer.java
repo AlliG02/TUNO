@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class HumanPlayer extends Player{
 
     private Scanner scanner;
-    private Card newCard;
 
     public HumanPlayer(String name, Deck sharedDeck){
         super(name, sharedDeck);
@@ -54,7 +53,5 @@ public class HumanPlayer extends Player{
                 validChoice = true;
             }
         }
-
-
     }
 }
