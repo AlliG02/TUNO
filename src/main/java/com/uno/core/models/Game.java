@@ -17,7 +17,7 @@ public class Game {
 
     public Game(List<Player> players) {
 
-        sharedDeck = new Deck();
+        sharedDeck = new Deck(this);
         player1 = new HumanPlayer("Human", sharedDeck);
         player2 = new ComputerPlayer(sharedDeck);
         this.players = players;
@@ -46,6 +46,8 @@ public class Game {
             // ternary operator. Reverses the player list depending on the reverse flag.
             List<Player> currentPlayers = reverseOrder ? reverse(players) : players;
 
+            // need to figure reversing out
+
             for (int i = 0; i < currentPlayers.size(); i++) {
                 Player player = currentPlayers.get(i);
 
@@ -72,10 +74,10 @@ public class Game {
         endScreen();
     }
 
-//    // set reverseOrder to the negation of its current value
-//    public void toggleReverseFlag(){
-//        this.reverseOrder = !this.reverseOrder;
-//    }
+    // set reverseOrder to the negation of its current value
+    public void toggleReverseFlag(){
+        this.reverseOrder = !this.reverseOrder;
+    }
 
     private List<Player> reverse(List<Player> list){
         List<Player> reversedList = new ArrayList<>(list);

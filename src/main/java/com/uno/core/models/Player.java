@@ -44,9 +44,9 @@ public abstract class Player {
             if (selectedCard.canBePlayedOn(deck.getTopCard())){
                 hand.removeCard(cardIndex);
                 deck.setTopCard(selectedCard);
-                // card.play()?
                 System.out.println(name + " played:");
                 selectedCard.showCard();
+                selectedCard.play();
                 cardPlayed = true;  // exits after playing card
             }
             else {

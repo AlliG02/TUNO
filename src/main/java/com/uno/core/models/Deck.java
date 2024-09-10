@@ -9,39 +9,41 @@ public class Deck {
 
     private Card topCard;
     private List<Card> deck;
+    private Game game;
     public TrashPile trash;
 
     // constructor for default deck
-    public Deck(){
+    public Deck(Game game){
         deck = new ArrayList<>();
         trash = new TrashPile();
+        this.game = game;
 
         // add blue cards
         for (int i = 0; i < 10; i++){
             deck.add(new Card(i, Colour.BLUE)); // normal
         }
-        deck.add(new ReverseCard(Colour.BLUE)); // reverse
+        deck.add(new ReverseCard(Colour.BLUE, game)); // reverse
         deck.add(new SkipCard(Colour.BLUE)); // skip
 
         // add red cards
         for (int i = 0; i < 10; i++){
             deck.add(new Card(i, Colour.RED)); // normal
         }
-        deck.add(new ReverseCard(Colour.RED)); // reverse
+        deck.add(new ReverseCard(Colour.RED, game)); // reverse
         deck.add(new SkipCard(Colour.RED)); // skip
 
         // add yellow cards
         for (int i = 0; i < 10; i++){
             deck.add(new Card(i, Colour.YELLOW)); // normal
         }
-        deck.add(new ReverseCard(Colour.YELLOW)); // reverse
+        deck.add(new ReverseCard(Colour.YELLOW, game)); // reverse
         deck.add(new SkipCard(Colour.YELLOW)); // skip
 
         // add green cards
         for (int i = 0; i < 10; i++){
             deck.add(new Card(i, Colour.GREEN)); // normal
         }
-        deck.add(new ReverseCard(Colour.GREEN)); // reverse
+        deck.add(new ReverseCard(Colour.GREEN, game)); // reverse
         deck.add(new SkipCard(Colour.GREEN)); // skip
 
         // shuffle the deck
@@ -106,7 +108,7 @@ public class Deck {
 
     public void refillFromNewDeck() {
         deck.clear();
-        Deck newDeck = new Deck();
+        Deck newDeck = new Deck(game);
         deck.addAll(newDeck.deck);
     }
 
