@@ -40,8 +40,8 @@ public abstract class Player {
 
             Card selectedCard = hand.getCard(cardIndex);
 
-            // checks card can be played. Exceptions made for wild and plus 4.
-            if (selectedCard instanceof WildCard || selectedCard.canBePlayedOn(deck.getTopCard())){
+            // checks card can be played. Exceptions made for wild and plus four.
+            if (selectedCard instanceof PlusFour || selectedCard instanceof WildCard || selectedCard.canBePlayedOn(deck.getTopCard())){
                 hand.removeCard(cardIndex);
                 deck.setTopCard(selectedCard);
                 System.out.println(name + " played:");

@@ -157,7 +157,36 @@ public class Deck {
 //        }
 //    }
 
-    // test constructor just for wild cards
+//    // test constructor just for wild cards
+//    public Deck(){
+//        deck = new ArrayList<>();
+//        trash = new TrashPile();
+//
+//        // add blue cards
+//        for (int i = 0; i < 10; i++){
+//            deck.add(new Card(i, Colour.BLUE));
+//            deck.add(new WildCard(Colour.WHITE)); // reverse
+//        }
+//
+//        // add red cards
+//        for (int i = 0; i < 10; i++){
+//            deck.add(new PlusTwo(Colour.RED)); // reverse
+//        }
+//        // shuffle the deck
+//        Collections.shuffle(deck);
+//        // find valid starting card
+//        Iterator<Card> iterator = deck.iterator();
+//        while (iterator.hasNext()) {
+//            Card card = iterator.next();
+//            if ((!(card instanceof ReverseCard)) && (!(card instanceof SkipCard))) { // This check needed for when special cards added
+//                topCard = card;
+//                iterator.remove();  // Safely removes the current element from the deck
+//                break;  // Exit the loop after finding the top card
+//            }
+//        }
+//    }
+
+    // test constructor just for plus four cards
     public Deck(){
         deck = new ArrayList<>();
         trash = new TrashPile();
@@ -165,12 +194,12 @@ public class Deck {
         // add blue cards
         for (int i = 0; i < 10; i++){
             deck.add(new Card(i, Colour.BLUE));
-            deck.add(new WildCard(Colour.WHITE)); // reverse
+            deck.add(new PlusFour(Colour.WHITE)); // reverse
         }
 
         // add red cards
         for (int i = 0; i < 10; i++){
-            deck.add(new PlusTwo(Colour.RED)); // reverse
+            deck.add(new PlusFour(Colour.WHITE)); // reverse
         }
         // shuffle the deck
         Collections.shuffle(deck);

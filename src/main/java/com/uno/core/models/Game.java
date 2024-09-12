@@ -74,8 +74,18 @@ public class Game {
     // Apply the PlusTwo effect to the next player
     public void plusTwoEffect() {
         Player nextPlayer = getNextPlayer();
-        nextPlayer.hand.addCard(sharedDeck.drawCard());
-        nextPlayer.hand.addCard(sharedDeck.drawCard());
+        for (int i = 0; i < 2; i++){
+            nextPlayer.hand.addCard(sharedDeck.drawCard());
+        }
+        repeatTurn = true;  // Skips the next player's turn
+    }
+
+    // Apply the PlusTwo effect to the next player
+    public void plusFourEffect() {
+        Player nextPlayer = getNextPlayer();
+        for (int i = 0; i < 4; i++){
+            nextPlayer.hand.addCard(sharedDeck.drawCard());
+        }
         repeatTurn = true;  // Skips the next player's turn
     }
 
