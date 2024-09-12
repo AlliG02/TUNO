@@ -18,7 +18,7 @@ public class Game {
 
     public Game(List<Player> players) {
 
-        sharedDeck = new Deck();
+        sharedDeck = new Deck(this);
         humanPlayer = new HumanPlayer("Human", sharedDeck);
         computerPlayer = new ComputerPlayer(sharedDeck);
         this.players = players;
