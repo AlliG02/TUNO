@@ -5,7 +5,8 @@ public enum Colour {
     RED("Red", "\u001B[31m"),
     BLUE("Blue", "\u001B[34m"),
     GREEN("Green", "\u001B[32m"),
-    YELLOW("Yellow", "\u001B[33m");
+    YELLOW("Yellow", "\u001B[33m"),
+    WHITE("WHITE", "\u001B[37m");
 
     private final String name;
     private final String ansiCode;
