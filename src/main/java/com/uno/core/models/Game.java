@@ -81,7 +81,7 @@ public class Game {
         this.repeatTurn = true; 
     }
 
-    private Player getNextPlayer(){
+    public Player getNextPlayer(){
         int currentPlayerIndex = players.indexOf(currentPlayer);
         if (reverseOrder){
             return players.get((currentPlayerIndex - 1 + players.size()) % players.size());

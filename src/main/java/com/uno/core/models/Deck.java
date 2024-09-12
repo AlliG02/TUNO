@@ -99,22 +99,21 @@ public class Deck {
         }
     }
 
-    // constructor just for reverse cards
+    // test constructor just for skip cards
     public Deck(){
         deck = new ArrayList<>();
         trash = new TrashPile();
 
         // add blue cards
         for (int i = 0; i < 10; i++){
-            deck.add(new Card(i, Colour.BLUE)); // normal
+            deck.add(new Card(i, Colour.BLUE));
+            deck.add(new SkipCard(Colour.BLUE)); // reverse
         }
-        deck.add(new ReverseCard(Colour.BLUE)); // reverse
 
         // add red cards
         for (int i = 0; i < 10; i++){
-            deck.add(new Card(i, Colour.RED)); // normal
+            deck.add(new SkipCard(Colour.RED)); // reverse
         }
-        deck.add(new ReverseCard(Colour.RED)); // reverse
         // shuffle the deck
         Collections.shuffle(deck);
         // find valid starting card
