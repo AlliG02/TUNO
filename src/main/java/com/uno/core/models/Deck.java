@@ -75,26 +75,72 @@ public class Deck {
 
     }
 
-    // TODO constructor for custom deck
-    public Deck(int numOfCards) {
+    // constructor for custom deck
+    public Deck(int normalCards, int reverseCards, int skipCards, int plusTwoCards, int plusFourCards, int wildCards) {
         deck = new ArrayList<>();
         trash = new TrashPile();
 
         // add blue cards
-        for (int i = 0; i < numOfCards; i++) {
+        for (int i = 0; i < normalCards; i++) {
             deck.add(new Card(i, Colour.BLUE));
         }
+        for (int i = 0; i < reverseCards; i++) {
+            deck.add(new Card(i, Colour.BLUE));
+        }
+        for (int i = 0; i < skipCards; i++) {
+            deck.add(new Card(i, Colour.BLUE));
+        }
+        for (int i = 0; i < plusTwoCards; i++) {
+            deck.add(new Card(i, Colour.BLUE));
+        }
+
         // add red cards
-        for (int i = 0; i < numOfCards; i++) {
+        for (int i = 0; i < normalCards; i++) {
             deck.add(new Card(i, Colour.RED));
         }
+        for (int i = 0; i < reverseCards; i++) {
+            deck.add(new Card(i, Colour.RED));
+        }
+        for (int i = 0; i < skipCards; i++) {
+            deck.add(new Card(i, Colour.RED));
+        }
+        for (int i = 0; i < plusTwoCards; i++) {
+            deck.add(new Card(i, Colour.RED));
+        }
+
         // add yellow cards
-        for (int i = 0; i < numOfCards; i++) {
+        for (int i = 0; i < normalCards; i++) {
             deck.add(new Card(i, Colour.YELLOW));
         }
-        // add green cards
-        for (int i = 0; i < numOfCards; i++) {
+        for (int i = 0; i < reverseCards; i++) {
+            deck.add(new Card(i, Colour.YELLOW));
+        }
+        for (int i = 0; i < skipCards; i++) {
+            deck.add(new Card(i, Colour.YELLOW));
+        }
+        for (int i = 0; i < plusTwoCards; i++) {
+            deck.add(new Card(i, Colour.YELLOW));
+        }
+
+        // add yellow cards
+        for (int i = 0; i < normalCards; i++) {
             deck.add(new Card(i, Colour.GREEN));
+        }
+        for (int i = 0; i < reverseCards; i++) {
+            deck.add(new Card(i, Colour.GREEN));
+        }
+        for (int i = 0; i < skipCards; i++) {
+            deck.add(new Card(i, Colour.GREEN));
+        }
+        for (int i = 0; i < plusTwoCards; i++) {
+            deck.add(new Card(i, Colour.GREEN));
+        }
+
+        for (int i = 0; i < plusFourCards; i++) {
+            deck.add(new Card(i, Colour.YELLOW));
+        }
+        for (int i = 0; i < wildCards; i++) {
+            deck.add(new Card(i, Colour.YELLOW));
         }
 
         // shuffle the deck

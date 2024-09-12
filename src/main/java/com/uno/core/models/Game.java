@@ -1,7 +1,5 @@
 package com.uno.core.models;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,7 +16,7 @@ public class Game {
 
     public Game(List<Player> players) {
 
-        sharedDeck = new Deck(this);
+        sharedDeck = new Deck(this); // default deck
         humanPlayer = new HumanPlayer("Human", sharedDeck);
         computerPlayer = new ComputerPlayer(sharedDeck);
         this.players = players;
