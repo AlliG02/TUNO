@@ -2,18 +2,16 @@ package com.uno.core.models;
 
 public class ReverseCard extends Card {
 
-    private Game game;
-
-    public ReverseCard(Colour colour, Game game){
+    public ReverseCard(Colour colour){
         super(colour);
-        this.game = game;
         createGridSpecialCards('⟳');
     }
 
     @Override
-    public void play() {
+    public void play(Game game) {
+        System.out.println(game.currentPlayer.name + " played a reverse card!");
         game.toggleReverseFlag();
-        System.out.println("Turn has been skipped!");
+        game.repeatCurrentPlayer();
     }
 
 }

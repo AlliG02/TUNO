@@ -13,7 +13,7 @@ public class HumanPlayer extends Player{
     }
 
     @Override
-    public void takeTurn() {
+    public void takeTurn(Game game) {
         // Example logic for taking a turn
         // Check if they can even pickup first
         System.out.println(name + ", it's your turn!\n");
@@ -35,7 +35,7 @@ public class HumanPlayer extends Player{
                 switch (choice) {
                     case 1:
                         System.out.println();
-                        playCard();
+                        playCard(game);
                         validChoice = true;
                         break;
                     case 2:

@@ -7,35 +7,36 @@ import java.util.Scanner;
 
 public class Game {
     private List<Player> players;
-    private Player player1;
-    private Player player2;
+    private Player humanPlayer;
+    private Player computerPlayer;
     private Scanner scanner;
     private Deck sharedDeck;
     private String winner;
-    private Boolean skipNextTurn = false;
-    private Boolean reverseOrder = false;
+    private boolean reverseOrder = false;
+    private boolean repeatTurn = false;
+    public Player currentPlayer;
 
     public Game(List<Player> players) {
 
-        sharedDeck = new Deck(this);
-        player1 = new HumanPlayer("Human", sharedDeck);
-        player2 = new ComputerPlayer(sharedDeck);
+        sharedDeck = new Deck();
+        humanPlayer = new HumanPlayer("Human", sharedDeck);
+        computerPlayer = new ComputerPlayer(sharedDeck);
         this.players = players;
-        this.players.add(player1);
-        this.players.add(player2);
+        this.players.add(humanPlayer);
+        this.players.add(computerPlayer);
+        this.currentPlayer = humanPlayer;
         scanner = new Scanner(System.in);
         // Title screen
         titleScreen();
     }
 
     private void startGame() {
-
         // Game loop
         boolean gameOngoing = true;
 
         while (gameOngoing) {
             // screen stuff
-            System.out.println(player2.name + " has " + player2.hand.getHandSize() + " cards remaining. The top card is: \n");
+            System.out.println(computerPlayer.name + " has " + computerPlayer.hand.getHandSize() + " cards remaining. The top card is: \n");
             sharedDeck.getTopCard().showCard();
             System.out.println("Deck is:");
             sharedDeck.showDeck();
@@ -43,33 +44,30 @@ public class Game {
             sharedDeck.trash.showTrash();
             System.out.println();
 
-            // ternary operator. Reverses the player list depending on the reverse flag.
-            List<Player> currentPlayers = reverseOrder ? reverse(players) : players;
+            currentPlayer.takeTurn(this);
 
-            // need to figure reversing out
-
-            for (int i = 0; i < currentPlayers.size(); i++) {
-                Player player = currentPlayers.get(i);
-
-                // exit the game loop if there is a winner
-                if (player.hand.getHandSize() == 0){
-                    winner = player.name;
-                    gameOngoing = false;
-                    break;
-                }
-                else{
-                    player.takeTurn();
-                    if (sharedDeck.deckIsEmpty()){
-                        if (!sharedDeck.trash.trashIsEmpty())
-                            // refill the deck with the trash pile
-                            sharedDeck.refillFromTrash(sharedDeck.trash.getTrash());
-                        else{
-                            sharedDeck.refillFromNewDeck();
-                        }
-                    }
-                }
+            // exit the game loop if there is a winner
+            if (currentPlayer.hand.getHandSize() == 0) {
+                winner = currentPlayer.name;
+                gameOngoing = false;
+                break;
+            }
+            // current player has another go if the repeatTurn flag is true (skip or reverse cards)
+            if (!repeatTurn){
+                currentPlayer = getNextPlayer();
+            }
+            else {
+                repeatTurn = false; // flag is reset after extra turn
             }
 
+            if (sharedDeck.deckIsEmpty()) {
+                if (!sharedDeck.trash.trashIsEmpty()) {
+                    // refill the deck with the trash pile
+                    sharedDeck.refillFromTrash(sharedDeck.trash.getTrash()); }
+                else {
+                    sharedDeck.refillFromNewDeck();
+                }
+            }
         }
         endScreen();
     }
@@ -79,10 +77,18 @@ public class Game {
         this.reverseOrder = !this.reverseOrder;
     }
 
-    private List<Player> reverse(List<Player> list){
-        List<Player> reversedList = new ArrayList<>(list);
-        Collections.reverse(reversedList);
-        return reversedList;
+    public void repeatCurrentPlayer(){
+        this.repeatTurn = true; 
+    }
+
+    private Player getNextPlayer(){
+        int currentPlayerIndex = players.indexOf(currentPlayer);
+        if (reverseOrder){
+            return players.get((currentPlayerIndex - 1 + players.size()) % players.size());
+        }
+        else {
+            return players.get((currentPlayerIndex + 1) % players.size()); // modulo ensures we stay within the bounds of arraylist
+        }
     }
 
     private void rules(){

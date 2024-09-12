@@ -13,13 +13,13 @@ public class ComputerPlayer extends Player {
     }
 
     @Override
-    public void takeTurn(){
+    public void takeTurn(Game game){
         System.out.println(name + "'s turn:");
 
         if (random.nextBoolean()) {
             // Example: 50% chance to play a card
             // TODO increase the chances
-            playCard();
+            playCard(game);
         }
         else {
             pickupCard();
@@ -27,7 +27,7 @@ public class ComputerPlayer extends Player {
     }
 
     @Override
-    protected void playCard() {
+    protected void playCard(Game game) {
         boolean cardPlayed = false;
 
         // Automatically try to find a playable card
@@ -39,6 +39,7 @@ public class ComputerPlayer extends Player {
                 deck.setTopCard(selectedCard);
                 System.out.println(name + " played:");
                 selectedCard.showCard();
+                selectedCard.play(game); // activate card affect
                 cardPlayed = true;
                 break;  // Exit the loop after playing a card
             }

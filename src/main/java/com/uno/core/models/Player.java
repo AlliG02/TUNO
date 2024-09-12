@@ -15,7 +15,7 @@ public abstract class Player {
         this.hand = new Hand();
     }
 
-    public abstract void takeTurn();
+    public abstract void takeTurn(Game game);
 
     protected void pickupCard() {
         Card newCard = deck.drawCard();
@@ -24,7 +24,7 @@ public abstract class Player {
         hand.addCard(newCard);
     }
 
-    protected void playCard() {
+    protected void playCard(Game game) {
         boolean cardPlayed = false;
 
         while (!cardPlayed){
@@ -46,7 +46,7 @@ public abstract class Player {
                 deck.setTopCard(selectedCard);
                 System.out.println(name + " played:");
                 selectedCard.showCard();
-                selectedCard.play();
+                selectedCard.play(game); // activate card affect
                 cardPlayed = true;  // exits after playing card
             }
             else {

@@ -8,6 +8,6 @@ public class SkipCard extends Card {
     }
 
     @Override
-    public void play(){}
+    public void play(Game game){}
 
 }

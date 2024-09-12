@@ -45,7 +45,7 @@ class Card {
     }
 
     // method for the function of each special card
-    public void play(){}
+    public void play(Game game){}
 
     public void createGrid() {
         this.grid = new char[3][3];
