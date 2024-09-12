@@ -12,7 +12,7 @@ public abstract class Player {
         this.name = name;
         this.deck = sharedDeck;
         this.scanner = new Scanner(System.in);
-        this.hand = new Hand();
+        this.hand = new Hand(sharedDeck);
     }
 
     public abstract void takeTurn(Game game);

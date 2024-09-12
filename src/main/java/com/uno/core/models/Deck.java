@@ -274,7 +274,6 @@ public class Deck {
 //        }
 //    }
 
-
     public void refillFromTrash(List<Card> trashPile) {
         deck.clear();
         deck.addAll(trashPile);    // Add all cards from the trash pile back to the deck

@@ -5,14 +5,16 @@ import java.util.ArrayList;
 public class Hand {
 
     private ArrayList<Card> cards;
+    private Deck deck;
 
-    public Hand(){
+    public Hand(Deck deck){
         cards = new ArrayList<Card>();
+        this.deck = deck;
     }
 
     public void fillHand(){
         for (int i = 0; i < 7; i++){
-            cards.add(new Card());
+            cards.add(deck.drawCard());
         }
     }
 

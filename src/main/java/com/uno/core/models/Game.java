@@ -2,6 +2,7 @@ package com.uno.core.models;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.*;
 
 public class Game {
     private List<Player> players;
@@ -35,10 +36,10 @@ public class Game {
             // screen stuff
             System.out.println(computerPlayer.name + " has " + computerPlayer.hand.getHandSize() + " cards remaining. The top card is: \n");
             sharedDeck.getTopCard().showCard();
-            System.out.println("Deck is:");
-            sharedDeck.showDeck();
-            System.out.println("Trash pile is:");
-            sharedDeck.trash.showTrash();
+//            System.out.println("Deck is:");
+//            sharedDeck.showDeck();
+//            System.out.println("Trash pile is:");
+//            sharedDeck.trash.showTrash();
             System.out.println();
 
             currentPlayer.takeTurn(this);
@@ -49,6 +50,46 @@ public class Game {
                 gameOngoing = false;
                 break;
             }
+            // TODO UNO check needs to be after playing card (after turn)
+//            if (currentPlayer.hand.getHandSize() == 1) {
+//                if (currentPlayer instanceof HumanPlayer) {
+//                    System.out.println("Say UNO (1). You have 3 seconds.");
+//
+//                    ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+//                    Future<String> future = executor.submit(() -> {
+//                        if (scanner.hasNextLine()) {
+//                            return scanner.nextLine();
+//                        }
+//                        return "";
+//                    });
+//
+//                    // Schedule a task to cancel waiting for user input after 3 seconds
+//                    executor.schedule(() -> future.cancel(true), 3, TimeUnit.SECONDS);
+//
+//                    try {
+//                        // Attempt to get the result within the time limit
+//                        String result = future.get(3, TimeUnit.SECONDS);
+//                        if ("1".equals(result.trim())) {
+//                            System.out.println("You said UNO!");
+//                        } else {
+//                            System.out.println("You didn't say UNO correctly.");
+//                            UNO();
+//                            System.out.println(currentPlayer.name + " picked up two cards");
+//                        }
+//                    } catch (TimeoutException | CancellationException e) {
+//                        System.out.println("Too late! You didn't say UNO in time.");
+//                        UNO();
+//                        System.out.println(currentPlayer.name + " picked up two cards");
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    } finally {
+//                        executor.shutdown();
+//                    }
+//                } else {
+//                    System.out.println("Computer says UNO!");
+//                }
+//            }
+
             // current player has another go if the repeatTurn flag is true (skip or reverse cards)
             if (!repeatTurn){
                 currentPlayer = getNextPlayer();
@@ -67,6 +108,12 @@ public class Game {
             }
         }
         endScreen();
+    }
+
+    private void UNO() {
+        for (int i = 0; i < 2; i++){
+            currentPlayer.hand.addCard(sharedDeck.drawCard());
+        }
     }
 
     // Apply the PlusTwo effect to the next player
