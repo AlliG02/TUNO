@@ -9,7 +9,7 @@ public class ReverseCard extends Card {
 
     @Override
     public void play(Game game) {
-        System.out.println(game.currentPlayer.name + " played a reverse card!");
+        System.out.println(game.currentPlayer.name + " played reverse!");
         game.toggleReverseFlag();
         game.repeatCurrentPlayer();
     }

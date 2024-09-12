@@ -9,7 +9,7 @@ public class SkipCard extends Card {
 
     @Override
     public void play(Game game){
-        System.out.println(game.currentPlayer.name + " played a skip card! " + game.getNextPlayer().name + " has been skipped.");
+        System.out.println(game.currentPlayer.name + " played skip! " + game.getNextPlayer().name + " has been skipped.");
         game.repeatCurrentPlayer();
     }
 

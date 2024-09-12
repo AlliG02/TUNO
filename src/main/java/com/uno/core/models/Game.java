@@ -31,9 +31,8 @@ public class Game {
     }
 
     private void startGame() {
-        // Game loop
         boolean gameOngoing = true;
-
+        // Game loop
         while (gameOngoing) {
             // screen stuff
             System.out.println(computerPlayer.name + " has " + computerPlayer.hand.getHandSize() + " cards remaining. The top card is: \n");
@@ -59,7 +58,7 @@ public class Game {
             else {
                 repeatTurn = false; // flag is reset after extra turn
             }
-
+            // handle deck refill if needed
             if (sharedDeck.deckIsEmpty()) {
                 if (!sharedDeck.trash.trashIsEmpty()) {
                     // refill the deck with the trash pile
@@ -70,6 +69,14 @@ public class Game {
             }
         }
         endScreen();
+    }
+
+    // Apply the PlusTwo effect to the next player
+    public void plusTwoEffect() {
+        Player nextPlayer = getNextPlayer();
+        nextPlayer.hand.addCard(sharedDeck.drawCard());
+        nextPlayer.hand.addCard(sharedDeck.drawCard());
+        repeatTurn = true;  // Skips the next player's turn
     }
 
     // set reverseOrder to the negation of its current value
