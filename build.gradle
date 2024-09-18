@@ -16,5 +16,11 @@ repositories {
 
 // dependencies used in code
 dependencies {
-    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'   // JUnit 5 API for writing tests
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'    // JUnit 5 Engine for running the tests
+    implementation 'io.javalin:javalin:6.3.0' // Ensure it's the latest version (javalin is used for http server in java)
+}
+
+test {
+    useJUnitPlatform()  // Ensures that Gradle uses JUnit 5 platform for running tests
 }
