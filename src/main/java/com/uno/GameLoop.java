@@ -1,8 +1,6 @@
 package com.uno;
 
-import com.uno.action.Action;
-import com.uno.action.PrintResults;
-import com.uno.action.PrintTitleScreen;
+import com.uno.action.*;
 import com.uno.core.models.Game;
 
 public class GameLoop {
@@ -18,18 +16,17 @@ public class GameLoop {
         new PrintResults().run(game);
     }
     public void loop() {
-        Action action = game.waitForAction();
-        boolean isValid = game.validateAction(action);
+        PlayerAction action = game.currentPlayer.awaitAction();
+        boolean isValid = action.validate(game);
         if (isValid) {
-            game.playAction(action);
+            action.run(game);
         } else {
             System.out.println("Invalid action");
-            game.resetCurrentAction();
             loop();
         }
 
-        if (!game.playerWon()) {
-            game.setNextPlayer();
+        if (!game.currentPlayer.hasWon()) {
+            new SetNextPlayer().run(game);
             loop();
         }
     }

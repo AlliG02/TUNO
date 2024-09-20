@@ -4,10 +4,14 @@ import com.uno.core.models.Card;
 import com.uno.core.models.Game;
 
 
-public class DrawCard implements Action {
+public class DrawCard extends PlayerAction {
     @Override
     public void run(Game game) {
-        Card card = game.deck.draw();
-        game.currentPlayer.addCard(card);
+
+    }
+
+    @Override
+    public boolean validate(Game game) {
+        return true;
     }
 }
