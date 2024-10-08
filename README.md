@@ -1,1 +1,5 @@
-Just a standard Uno game...at the moment.
+# TUNO
+
+An UNO copy that is played from the command line.
+
+- Built with **Java** inside **IntelliJ**
